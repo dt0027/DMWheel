@@ -1,0 +1,21 @@
+Options -Indexes
+ErrorDocument 404 /404.php
+php_value max_execution_time 60
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+
+  #www redirect
+  RewriteCond %{SERVER_NAME} !^$ [NC]
+  RewriteCond %{SERVER_NAME} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  #ssl redirect
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTPS} off
+  RewriteCond %{SERVER_PORT} !^443$
+  RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+  #other redirect
+</IfModule>
