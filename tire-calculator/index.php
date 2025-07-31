@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
 ?>
 
 <section id="data1" class="data_main">
-    <div class="container">
+    <div class="container container_form">
 
         <div class="form">
             <div class="form_data" data-id="1" data-color="#5c636a">
@@ -79,7 +79,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
 </section>
 
 <section id="visual">
-    <div class="container">
+    <div class="container container_visual">
         <div class="visual">
             <canvas id="myCanvas1" width="800px" height="800px"></canvas>
             <canvas id="myCanvas2" width="800px" height="800px"></canvas>
@@ -87,7 +87,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
     </div>
 </section>
 
-<p id="main-info" class="text-center"></p>
+    <p id="main-info" class="text-center"></p>
 
 <section id="information_briefly">
     <div class="container">

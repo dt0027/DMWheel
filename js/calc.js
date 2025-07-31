@@ -118,11 +118,11 @@ function myPaint(number = 1, color = '#5c636a') {
     xWheelPositionOut[number] = xWheelLeft;
     if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] < xWheelPositionOut[1]) {
         let deltaOut = xWheelPositionOut[1] - xWheelPositionOut[2];
-        document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut + ' мм ближе к арке';
+        document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut.toFixed(1) + ' мм ближе к арке';
     }
     if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] > xWheelPositionOut[1]) {
         let deltaOut = xWheelPositionOut[2] - xWheelPositionOut[1];
-        document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut + ' мм глубже в арке';
+        document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut.toFixed(1) + ' мм глубже в арке';
     }
     if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] === xWheelPositionOut[1]) {
         document.getElementById('main-info').innerHTML = 'Новый диск не изменит положения относительно арки';

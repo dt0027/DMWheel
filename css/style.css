@@ -161,10 +161,14 @@ hr {
 
 
 
-
-
-
+/*Для больших экранов*/
 @media screen and (min-width: 600px) {
+    .container_form {
+        width: 800px;
+    }
+    .container_visual {
+        width: 600px;
+    }
     .form {
         overflow: hidden;
     }
