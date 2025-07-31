@@ -87,8 +87,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
     </div>
 </section>
 
-<p class="text-center">Новый диск будет:<br/> на 2 метра ближе к стойке<br/> и 2 гектара ближе к арке</p>
-<p class="text-center"><br/></p>
+<p id="main-info" class="text-center"></p>
 
 <section id="information_briefly">
     <div class="container">
@@ -140,10 +139,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                 <p>Ширина диска</p>
             </div>
             <div class="col text-center">
-                <p>589.5 мм</p>
+                <p>... мм</p>
             </div>
             <div class="col text-center">
-                <p>689.7 мм</p>
+                <p>... мм</p>
             </div>
         </div>
     </div>

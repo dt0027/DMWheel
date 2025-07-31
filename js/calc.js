@@ -24,6 +24,9 @@ let isDragging = false;
 let startX = 0;
 let offsetX2 = 0;
 
+// Переменные для рассчета координат первого и второго диска:
+let xWheelPositionOut = {1: null, 2: null} // Относительно арки
+
 // Функция рисования:
 function myPaint(number = 1, color = '#5c636a') {
     // Меняем цвет каждого блока для отличия:
@@ -111,9 +114,27 @@ function myPaint(number = 1, color = '#5c636a') {
     ctx.stroke();
 
     // Выводим значения в блок информации:
-    document.getElementById('main-setting' + number).innerHTML = diameterValue + 'x' + widthValue + ' ET' + etValue + '  ' + tireWidthValue + '/' + profileValue;
+    // Положение относительно стойки и арки:
+    xWheelPositionOut[number] = xWheelLeft;
+    if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] < xWheelPositionOut[1]) {
+        let deltaOut = xWheelPositionOut[1] - xWheelPositionOut[2];
+        document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut + ' мм ближе к арке';
+    }
+    if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] > xWheelPositionOut[1]) {
+        let deltaOut = xWheelPositionOut[2] - xWheelPositionOut[1];
+        document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut + ' мм глубже в арке';
+    }
+    if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] === xWheelPositionOut[1]) {
+        document.getElementById('main-info').innerHTML = 'Новый диск не изменит положения относительно арки';
+    }
 
-    // Насколько тото насколько сето:
+
+
+
+
+
+    // Разница в диаметре:
+    document.getElementById('main-setting' + number).innerHTML = diameterValue + 'x' + widthValue + ' ET' + etValue + '  ' + tireWidthValue + '/' + profileValue;
 
     // Круги левого и правого диска:
     //     document.getElementById('arr-set' + number).style.backgroundColor = color; // НЕ РАБОТАЕТ MAFUCKA!!!!
@@ -125,14 +146,6 @@ function myPaint(number = 1, color = '#5c636a') {
     }
 
     // Ширина диска: ТОЖЕ НУЖНА РАЗНИЦА:
-
-
-    console.log('логи:')
-    console.log(diameter);
-    console.log(width);
-    console.log(allDiam);
-
-
 }
 
 
@@ -159,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Переменная и функция для перетаскивания верхнего колеса:
 let canvas2 = document.getElementById('myCanvas2');
 let color2 = document.querySelector('.form_data[data-id="2"]').getAttribute('data-color');
+
 function redraw() {
     myPaint(2, color2);
 }
@@ -206,4 +220,3 @@ window.addEventListener('touchend', () => {
         redraw();
     }
 }, {passive: true});
-
