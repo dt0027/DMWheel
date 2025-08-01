@@ -25,14 +25,15 @@ let startX = 0;
 let offsetX2 = 0;
 
 // Переменные для рассчета координат первого и второго диска:
-let xWheelPositionOut = {1: null, 2: null} // Относительно арки
+let xPositionOut = {1: null, 2: null} // Относительно арки
+let xPositionInner = {1: null, 2: null} // Относительно стойки
 
 // Функция рисования:
 function myPaint(number = 1, color = '#5c636a') {
     // Меняем цвет каждого блока для отличия:
     document.querySelector('.form_data[data-id="' + number + '"] hr').style.backgroundImage = 'linear-gradient(to right, transparent, ' + color + ', transparent)';
 
-    // Переменные и координаты первого диска:
+    // Переменные и координаты диска:
     let diameterValue = document.getElementById('d' + number).value;
     if (diameterValue.length < 1) return;
     let diameter = parseFloat(diameterValue.replace(",", "."));
@@ -64,7 +65,7 @@ function myPaint(number = 1, color = '#5c636a') {
     let xWheelRight = (canvas.width / 2) + (width / 2) + et;
     let yWheelDown = (canvas.height / 2) + (diameter / 2);
 
-    // Переменные и координаты первой шины:
+    // Переменные и координаты шины:
     let tireWidthValue = document.getElementById('tw' + number).value;
     let tireWidth = parseFloat(tireWidthValue.replace(",", "."));
 
@@ -114,18 +115,31 @@ function myPaint(number = 1, color = '#5c636a') {
     ctx.stroke();
 
     // Выводим значения в блок информации:
-    // Положение относительно стойки и арки:
-    xWheelPositionOut[number] = xWheelLeft;
-    if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] < xWheelPositionOut[1]) {
-        let deltaOut = xWheelPositionOut[1] - xWheelPositionOut[2];
+    // Положение относительно арки:
+    xPositionOut[number] = xWheelLeft;
+    if (xPositionOut[1] !== null && xPositionOut[2] !== null && xPositionOut[2] < xPositionOut[1]) {
+        let deltaOut = xPositionOut[1] - xPositionOut[2];
         document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut.toFixed(1) + ' мм ближе к арке';
     }
-    if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] > xWheelPositionOut[1]) {
-        let deltaOut = xWheelPositionOut[2] - xWheelPositionOut[1];
+    if (xPositionOut[1] !== null && xPositionOut[2] !== null && xPositionOut[2] > xPositionOut[1]) {
+        let deltaOut = xPositionOut[2] - xPositionOut[1];
         document.getElementById('main-info').innerHTML = 'Новый диск будет на ' + deltaOut.toFixed(1) + ' мм глубже в арке';
     }
-    if (xWheelPositionOut[1] !== null && xWheelPositionOut[2] !== null && xWheelPositionOut[2] === xWheelPositionOut[1]) {
+    if (xPositionOut[1] !== null && xPositionOut[2] !== null && xPositionOut[2] === xPositionOut[1]) {
         document.getElementById('main-info').innerHTML = 'Новый диск не изменит положения относительно арки';
+    }
+    // Положение относительно стойки:
+    xPositionInner[number] = xWheelRight;
+    if (xPositionInner[1] !== null && xPositionInner[2] !== null && xPositionInner[2] > xPositionInner[1]) {
+        let deltaInner = xPositionInner[2] - xPositionInner[1];
+        document.getElementById('main-info-2').innerHTML = 'и будет на ' + deltaInner.toFixed(1) + ' мм ближе к стойке';
+    }
+    if (xPositionInner[1] !== null && xPositionInner[2] !== null && xPositionInner[2] < xPositionInner[1]) {
+        let deltaInner = xPositionInner[1] - xPositionInner[2];
+        document.getElementById('main-info-2').innerHTML = 'и будет на ' + deltaInner.toFixed(1) + ' мм дальше от стойки';
+    }
+    if (xPositionInner[1] !== null && xPositionInner[2] !== null && xPositionInner[2] === xPositionInner[1]) {
+        document.getElementById('main-info-2').innerHTML = 'и не изменит положения относительно стойки';
     }
 
 
@@ -135,9 +149,6 @@ function myPaint(number = 1, color = '#5c636a') {
 
     // Разница в диаметре:
     document.getElementById('main-setting' + number).innerHTML = diameterValue + 'x' + widthValue + ' ET' + etValue + '  ' + tireWidthValue + '/' + profileValue;
-
-    // Круги левого и правого диска:
-    //     document.getElementById('arr-set' + number).style.backgroundColor = color; // НЕ РАБОТАЕТ MAFUCKA!!!!
 
     // Диаметр колес: НУЖНА РАЗНИЦА СПРАВА!!!!!!!!!
     document.getElementById('diam-change' + number).innerHTML = allDiam + ' мм';

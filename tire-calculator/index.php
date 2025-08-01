@@ -88,6 +88,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
 </section>
 
     <p id="main-info" class="text-center"></p>
+    <p id="main-info-2" class="text-center"></p>
 
 <section id="information_briefly">
     <div class="container">
@@ -113,17 +114,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
 <section id="information_all">
     <div class="container">
         <div class="row">
-            <div class="col"></div>
-            <div class="col text-center">
-<!--                <span class="arr-setting-left"></span>-->
-                <span class="arr-set1 arr-setting"></span>
-            </div>
-            <div class="col text-center">
-<!--                <span class="arr-setting-right"></span>-->
-                <span class="arr-set2 arr-setting"></span>
-            </div>
-        </div>
-        <div class="row">
             <div class="col">
                 <p>Диаметр колеса</p>
             </div>
@@ -139,10 +129,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                 <p>Ширина диска</p>
             </div>
             <div class="col text-center">
-                <p>... мм</p>
+                <p></p>
             </div>
             <div class="col text-center">
-                <p>... мм</p>
+                <p></p>
             </div>
         </div>
     </div>

@@ -147,14 +147,6 @@ hr {
     color: var(--color-red);
 }
 
-.arr-setting {
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: transparent;
-}
-
 #information_all .col {
     white-space: nowrap;
 }
