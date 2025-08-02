@@ -33,7 +33,7 @@ hr {
 }
 
 .data_main {
-    margin-top: 50px;
+    margin-top: 44px;
 }
 
 .form {
@@ -73,9 +73,9 @@ hr {
     display: flex;
     justify-content: center;
     gap: 10px;
-    /*background-color: var(--color-subwhite);*/
+    background-color: var(--color-subwhite);
     border-radius: 0 10px 10px 10px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border: 2px solid var(--color-subwhite);
 }
 
@@ -97,7 +97,7 @@ hr {
 .form-label {
     position: absolute;
     pointer-events: none;
-    background-color: var(--color-white);
+    background-color: var(--color-subwhite);
     left: 10px;
     top: 10px;
     white-space: nowrap;
@@ -137,6 +137,9 @@ hr {
     background-size: 100% 100%;
     animation: none;
     transition: 1s;
+}
+#information_main {
+    height: 48px;
 }
 
 #information_briefly {
@@ -178,6 +181,12 @@ hr {
     }
     #offcanvasNavbar {
         width: 35%;
+    }
+    #information_briefly .container {
+        width: 600px;
+    }
+    #information_all .container {
+        width: 600px;
     }
 }
 

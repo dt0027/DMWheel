@@ -87,8 +87,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
     </div>
 </section>
 
+<section id="information_main">
     <p id="main-info" class="text-center"></p>
     <p id="main-info-2" class="text-center"></p>
+</section>
 
 <section id="information_briefly">
     <div class="container">
@@ -106,6 +108,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                     <p id="main-setting2"></p>
                 </div>
             </div>
+            <div class="col text-center"></div>
         </div>
     </div>
 
@@ -122,6 +125,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
             </div>
             <div class="col text-center">
                 <p id="diam-change2"></p>
+            </div>
+            <div class="col text-left">
+                <p id="diam-difference"></p>
             </div>
         </div>
         <div class="row">

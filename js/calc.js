@@ -27,6 +27,8 @@ let offsetX2 = 0;
 // Переменные для рассчета координат первого и второго диска:
 let xPositionOut = {1: null, 2: null} // Относительно арки
 let xPositionInner = {1: null, 2: null} // Относительно стойки
+let diamTire = {1: null, 2: null} // Общий диаметр 1-го и второго колеса
+let diamWheel = {1: null, 2: null} // Диаметр 1-го и второго диска
 
 // Функция рисования:
 function myPaint(number = 1, color = '#5c636a') {
@@ -142,19 +144,42 @@ function myPaint(number = 1, color = '#5c636a') {
         document.getElementById('main-info-2').innerHTML = 'и не изменит положения относительно стойки';
     }
 
-
-
-
-
-
-    // Разница в диаметре:
+    // Вывод параметров дисков:
     document.getElementById('main-setting' + number).innerHTML = diameterValue + 'x' + widthValue + ' ET' + etValue + '  ' + tireWidthValue + '/' + profileValue;
 
-    // Диаметр колес: НУЖНА РАЗНИЦА СПРАВА!!!!!!!!!
-    document.getElementById('diam-change' + number).innerHTML = allDiam + ' мм';
+    // Диаметр колес:
+    document.getElementById('diam-change' + number).innerHTML = allDiam.toFixed(1) + ' мм';
     if (isNaN(allDiam)) {
-        document.getElementById('diam-change' + number).innerHTML = diameter + ' мм';
+        document.getElementById('diam-change' + number).innerHTML = diameter.toFixed(1) + ' мм';
     }
+    // Разница в диаметре:
+    diamTire[number] = allDiam;
+    diamWheel[number] = diameter;
+    let deltaDiam = diamTire[2] - diamTire[1];
+    if (diamTire[1] !== null && diamTire[2] !== null) {
+        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    }
+    if (diamTire[1] !== null && diamTire[2] !== null && isNaN(diamTire[1])) {
+        deltaDiam = diamTire[2] - diamWheel[1];
+        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    }
+    if (diamTire[1] !== null && diamTire[2] !== null && isNaN(diamTire[2])) {
+        deltaDiam = diamWheel[2] - diamTire[1];
+        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    }
+    if (diamTire[1] !== null && diamTire[2] !== null && isNaN(diamTire[1]) && isNaN(diamTire[2])) {
+        deltaDiam = diamWheel[2] - diamWheel[1];
+        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    }
+    if (diamTire[1] !== null && diamTire[2] !== null && diamTire[1] === diamTire[2]) {
+        document.getElementById('diam-difference').innerHTML = '(идентичны)';
+    }
+    if (diamWheel[1] !== null && diamWheel[2] !== null && diamWheel[1] === diamWheel[2]) {
+        document.getElementById('diam-difference').innerHTML = '(идентичны)';
+    }
+
+
+
 
     // Ширина диска: ТОЖЕ НУЖНА РАЗНИЦА:
 }
