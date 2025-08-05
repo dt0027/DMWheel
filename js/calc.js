@@ -27,8 +27,11 @@ let offsetX2 = 0;
 // Переменные для рассчета координат первого и второго диска:
 let xPositionOut = {1: null, 2: null} // Относительно арки
 let xPositionInner = {1: null, 2: null} // Относительно стойки
-let diamTire = {1: null, 2: null} // Общий диаметр 1-го и второго колеса
+// Переменные для разницы диаметров и ширины дисков/шин
+let diamTire = {1: null, 2: null} // Диаметр шины
+let heightProfile = {1: null, 2: null} // профиль шин
 let diamWheel = {1: null, 2: null} // Диаметр 1-го и второго диска
+let widthWheel = {1: null, 2: null} // Ширина диска
 
 // Функция рисования:
 function myPaint(number = 1, color = '#5c636a') {
@@ -67,7 +70,7 @@ function myPaint(number = 1, color = '#5c636a') {
     let xWheelRight = (canvas.width / 2) + (width / 2) + et;
     let yWheelDown = (canvas.height / 2) + (diameter / 2);
 
-    // Переменные и координаты шины:
+    // Переменные и координаты шины
     let tireWidthValue = document.getElementById('tw' + number).value;
     let tireWidth = parseFloat(tireWidthValue.replace(",", "."));
 
@@ -75,7 +78,7 @@ function myPaint(number = 1, color = '#5c636a') {
     let profile = parseFloat(profileValue.replace(",", "."));
     profile *= 0.01; // процент от ширины шины
 
-    // Общий диаметр диска:
+    // Общий диаметр диска
     let allDiam = diameter + (tireWidth * profile * 2);
 
     let xTireUpLeft = (canvas.width / 2) - (tireWidth / 2) + et;
@@ -88,7 +91,7 @@ function myPaint(number = 1, color = '#5c636a') {
     let colorObj = hexToRgb(color);
     let colorTire = combineColors([0, 0, 0], [colorObj.r, colorObj.g, colorObj.b, 0.5]);
 
-    // Рисуем шину сверху:
+    // Рисуем шину сверху
     ctx.beginPath();
     ctx.lineWidth = '4';
     ctx.lineJoin = 'bevel';
@@ -99,7 +102,7 @@ function myPaint(number = 1, color = '#5c636a') {
     ctx.bezierCurveTo(xTireUpRight, yTireUp, xTireUpRight, yTireUp, xWheelRight + hamP, yWheelUp);
     ctx.stroke();
 
-    // Рисуем шину снизу:
+    // Рисуем шину снизу
     ctx.beginPath();
     ctx.lineJoin = 'bevel';
     ctx.strokeStyle = colorTire;
@@ -109,15 +112,15 @@ function myPaint(number = 1, color = '#5c636a') {
     ctx.bezierCurveTo(xTireUpRight, yTireDown, xTireUpRight, yTireDown, xWheelRight + hamP, yWheelDown);
     ctx.stroke();
 
-    // Рисуем диск:
+    // Рисуем диск
     ctx.beginPath();
     ctx.lineJoin = 'bevel';
     ctx.strokeStyle = color;
     ctx.rect(xWheelLeft - hamP, yWheelUp, width + hamP * 2, diameter);
     ctx.stroke();
 
-    // Выводим значения в блок информации:
-    // Положение относительно арки:
+    // Выводим значения в блок информации
+    // Положение относительно арки
     xPositionOut[number] = xWheelLeft;
     if (xPositionOut[1] !== null && xPositionOut[2] !== null && xPositionOut[2] < xPositionOut[1]) {
         let deltaOut = xPositionOut[1] - xPositionOut[2];
@@ -130,7 +133,7 @@ function myPaint(number = 1, color = '#5c636a') {
     if (xPositionOut[1] !== null && xPositionOut[2] !== null && xPositionOut[2] === xPositionOut[1]) {
         document.getElementById('main-info').innerHTML = 'Новый диск не изменит положения относительно арки';
     }
-    // Положение относительно стойки:
+    // Положение относительно стойки
     xPositionInner[number] = xWheelRight;
     if (xPositionInner[1] !== null && xPositionInner[2] !== null && xPositionInner[2] > xPositionInner[1]) {
         let deltaInner = xPositionInner[2] - xPositionInner[1];
@@ -144,42 +147,56 @@ function myPaint(number = 1, color = '#5c636a') {
         document.getElementById('main-info-2').innerHTML = 'и не изменит положения относительно стойки';
     }
 
-    // Вывод параметров дисков:
+    // Вывод параметров дисков
     document.getElementById('main-setting' + number).innerHTML = diameterValue + 'x' + widthValue + ' ET' + etValue + '  ' + tireWidthValue + '/' + profileValue;
 
-    // Диаметр колес:
-    document.getElementById('diam-change' + number).innerHTML = allDiam.toFixed(1) + ' мм';
-    if (isNaN(allDiam)) {
-        document.getElementById('diam-change' + number).innerHTML = diameter.toFixed(1) + ' мм';
-    }
-    // Разница в диаметре:
-    diamTire[number] = allDiam;
+    // Разница в параметрах
     diamWheel[number] = diameter;
-    let deltaDiam = diamTire[2] - diamTire[1];
-    if (diamTire[1] !== null && diamTire[2] !== null) {
-        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    widthWheel[number] = width;
+    diamTire[number] = allDiam;
+    heightProfile[number] = tireWidth * profile;
+
+    // Диаметр шины
+    if ((!isNaN(diamTire[1]) && diamTire[1] !== null) || (!isNaN(diamTire[2])  && diamTire[2] !== null)) {
+        document.getElementById('tire-change' + number).innerHTML = allDiam.toFixed(1) + ' мм';
     }
-    if (diamTire[1] !== null && diamTire[2] !== null && isNaN(diamTire[1])) {
-        deltaDiam = diamTire[2] - diamWheel[1];
-        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    // Разница диаметров шин
+    if (!isNaN(diamTire[1]) && !isNaN(diamTire[2]) && diamTire[1] !== null && diamTire[2] !== null) {
+        let deltaWheel = diamTire[2] - diamTire[1];
+        document.getElementById('tire-height-difference').innerHTML = '(разница ' + deltaWheel.toFixed(1) + ' мм)';
     }
-    if (diamTire[1] !== null && diamTire[2] !== null && isNaN(diamTire[2])) {
-        deltaDiam = diamWheel[2] - diamTire[1];
-        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+
+
+    // Профиль
+    if ((!isNaN(heightProfile[1]) && heightProfile[1] !== null) || (!isNaN(heightProfile[2])  && heightProfile[2] !== null)) {
+        document.getElementById('profile-change' + number).innerHTML = (tireWidth * profile).toFixed(1) + ' мм';
     }
-    if (diamTire[1] !== null && diamTire[2] !== null && isNaN(diamTire[1]) && isNaN(diamTire[2])) {
-        deltaDiam = diamWheel[2] - diamWheel[1];
-        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaDiam.toFixed(1) + ' мм)';
+    // Разница профилей
+    if (heightProfile[1] !== null && heightProfile[2] !== null && !isNaN(heightProfile[1]) && !isNaN(heightProfile[2])) {
+        let deltaWheel = heightProfile[2] - heightProfile[1];
+        document.getElementById('profile-height-difference').innerHTML = '(разница ' + deltaWheel.toFixed(1) + ' мм)';
     }
-    if (diamTire[1] !== null && diamTire[2] !== null && diamTire[1] === diamTire[2]) {
-        document.getElementById('diam-difference').innerHTML = '(идентичны)';
+
+    // Диаметр диска
+    document.getElementById('diam-change' + number).innerHTML = diameter.toFixed(1) + ' мм';
+    // Разница диаметров диска
+    if (diamWheel[1] !== null && diamWheel[2] !== null) {
+        let deltaWheel = diamWheel[2] - diamWheel[1];
+        document.getElementById('diam-difference').innerHTML = '(разница ' + deltaWheel.toFixed(1) + ' мм)';
     }
-    if (diamWheel[1] !== null && diamWheel[2] !== null && diamWheel[1] === diamWheel[2]) {
-        document.getElementById('diam-difference').innerHTML = '(идентичны)';
+    //Ширина диска
+    document.getElementById('width-change' + number).innerHTML = width.toFixed(1) + ' мм';
+    // Разница ширины дисков
+    if (widthWheel[1] !== null && widthWheel[2] !== null) {
+        let deltaWheel = widthWheel[2] - widthWheel[1];
+        document.getElementById('wheel-width-difference').innerHTML = '(разница ' + deltaWheel.toFixed(1) + ' мм)';
     }
 
 
 
+    console.log('логи:')
+    console.log('diamTire[1]' + diamTire[1])
+    console.log('diamTire[2]' + diamTire[2])
 
     // Ширина диска: ТОЖЕ НУЖНА РАЗНИЦА:
 }

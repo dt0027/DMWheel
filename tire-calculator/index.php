@@ -52,7 +52,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                     </div>
 
                     <div class="form-item">
-                        <input type="number" id="et2" class="form-input" required/>
+                        <input type="number" step="0.1" id="et2" class="form-input" required/>
                         <label class="form-label" for="et2">Вылет</label>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                     </div>
 
                     <div class="form-item">
-                        <input type="number" id="pr2" class="form-input" required/>
+                        <input type="number" step="5" id="pr2" class="form-input" required/>
                         <label class="form-label" for="pr2">Профиль</label>
                     </div>
                 </div>
@@ -118,7 +118,35 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
     <div class="container">
         <div class="row">
             <div class="col">
-                <p>Диаметр колеса</p>
+                <p>Диаметр шины</p>
+            </div>
+            <div class="col text-center">
+                <p id="tire-change1"></p>
+            </div>
+            <div class="col text-center">
+                <p id="tire-change2"></p>
+            </div>
+            <div class="col text-left">
+                <p id="tire-height-difference"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Профиль шины</p>
+            </div>
+            <div class="col text-center">
+                <p id="profile-change1"></p>
+            </div>
+            <div class="col text-center">
+                <p id="profile-change2"></p>
+            </div>
+            <div class="col text-left">
+                <p id="profile-height-difference"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Диаметр диска</p>
             </div>
             <div class="col text-center">
                 <p id="diam-change1"></p>
@@ -135,10 +163,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                 <p>Ширина диска</p>
             </div>
             <div class="col text-center">
-                <p></p>
+                <p id="width-change1"></p>
             </div>
             <div class="col text-center">
-                <p></p>
+                <p id="width-change2"></p>
+            </div>
+            <div class="col text-left">
+                <p id="wheel-width-difference"></p>
             </div>
         </div>
     </div>
