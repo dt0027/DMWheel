@@ -21,7 +21,6 @@ hr {
 #offcanvasNavbar {
     width: 80%;
 }
-
 .p_name {
     font-size: 24px;
     margin: 10px 0 0;
@@ -30,6 +29,9 @@ hr {
     border: 2px solid var(--color-subwhite);
     border-bottom: none;
     border-radius: 10px 10px 0 0;
+}
+p {
+    font-size: 12px;
 }
 
 .data_main {
@@ -131,9 +133,21 @@ hr {
     top: 0;
     z-index: 1;
 }
+.page_file1 {
+    position: absolute;
+    width: 60px;
+    left: 5%;
+    margin-top: -50px;
+}
+.page_file2 {
+    position: absolute;
+    width: 60px;
+    right: 5%;
+    margin-top: -50px;
+}
 
 #myCanvas1 {
-    background-image: url(../img/canvas_background.svg);
+    background-image: url(../img/inner_file/canvas_background.svg);
     background-size: 100% 100%;
     animation: none;
     transition: 1s;
@@ -163,6 +177,18 @@ hr {
     }
     .container_visual {
         width: 600px;
+    }
+    .page_file1 {
+        position: absolute;
+        left: auto;
+        margin-left: 120px;
+        /*margin-left: 5%;*/
+    }
+    .page_file2 {
+        position: absolute;
+        right: auto;
+        margin-left: 108px;
+        /*margin-right: 5%;*/
     }
     .form {
         overflow: hidden;

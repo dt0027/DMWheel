@@ -84,6 +84,18 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
             <canvas id="myCanvas1" width="800px" height="800px"></canvas>
             <canvas id="myCanvas2" width="800px" height="800px"></canvas>
         </div>
+        <div class="row">
+            <div class="col">
+                <a href="../img">
+                    <img src="../img/inner_file/page_file.svg" class="page_file1" alt="page_file">
+                </a>
+            </div>
+            <div class="col">
+                <a href="../img">
+                    <img src="../img/inner_file/page_file.svg" class="page_file2" alt="page_file">
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
