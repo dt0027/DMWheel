@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?=$titlePage?></title>
+    <meta name="description" content="Удобный шинный калькулятор и калькулятор составных дисков. Расчет параметров шин, вылета, полок и подбор оптимальных размеров для вашего авто. Галерея с примерами.">
+    <meta name="keywords" content="шинный калькулятор, калькулятор дисков, расчет полок, вылет диска, подбор шин, составные диски, автотюнинг, параметры дисков, калькулятор вылета диска">
+
+    <meta name="robots" content="index, follow">
+<!--    <meta name="robots" content="noindex, nofollow"> если нужно скрыть страницу от поисковиков-->
+    <!-- Open Graph для соцсетей -->
+    <meta property="og:title" content="Онлайн шинный калькулятор и расчет дисков">
+    <meta property="og:description" content="Быстрый расчет параметров шин и дисков. Калькулятор составных дисков и галерея примеров.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lil-lip.ru/"> <!-- замени на свой URL -->
+    <meta property="og:image" content="https://example.com/images/preview.jpg"> <!-- превью для соцсетей -->
+
+    <link rel="icon" type="image/png" href="/img/inner_file/my-favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/img/inner_file/my-favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/img/inner_file/my-favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/inner_file/my-favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Lil Lip Калькулятор для дисков" />
+    <link rel="manifest" href="/img/inner_file/my-favicon/site.webmanifest" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css?<?=filemtime($_SERVER['DOCUMENT_ROOT'] . '/css/style.css')?>">
@@ -33,7 +52,7 @@
                                 <a class="nav-link" href="#">Калькулятор составных дисков</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Фото</a>
+                                <a class="nav-link" href="/page-gallery/">Фото галерея</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

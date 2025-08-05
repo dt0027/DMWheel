@@ -4,12 +4,17 @@
     --color-gray: #5c636a;
     --color-red: #990000;
 }
+.h1-tire-calculator {
+    position: absolute;
+    margin-top: -50px;
+}
 body {
     color: var(--color-gray);
     padding-bottom: 40px;
 }
 p {
     margin-bottom: 0;
+    font-size: 12px;
 }
 hr {
     opacity: 1;
@@ -30,10 +35,6 @@ hr {
     border-bottom: none;
     border-radius: 10px 10px 0 0;
 }
-p {
-    font-size: 12px;
-}
-
 .data_main {
     margin-top: 44px;
 }
@@ -133,17 +134,21 @@ p {
     top: 0;
     z-index: 1;
 }
-.page_file1 {
+#page_file1 {
     position: absolute;
     width: 60px;
     left: 5%;
     margin-top: -50px;
+    z-index: 2;
+    opacity: 0.4;
 }
-.page_file2 {
+#page_file2 {
     position: absolute;
     width: 60px;
     right: 5%;
     margin-top: -50px;
+    z-index: 2;
+    opacity: 0.4;
 }
 
 #myCanvas1 {
@@ -153,7 +158,10 @@ p {
     transition: 1s;
 }
 #information_main {
-    height: 48px;
+    height: 50px;
+}
+.main-info-top {
+    font-size: 16px;
 }
 
 #information_briefly {
@@ -172,23 +180,26 @@ p {
 
 /*Для больших экранов*/
 @media screen and (min-width: 600px) {
+    p {
+        font-size: 18px;
+    }
     .container_form {
         width: 800px;
     }
     .container_visual {
         width: 600px;
     }
-    .page_file1 {
+    #page_file1 {
         position: absolute;
-        left: auto;
-        margin-left: 120px;
-        /*margin-left: 5%;*/
+        display: inline-block;
+        left: 50%;
+        margin-left: -400px;
     }
-    .page_file2 {
+    #page_file2 {
         position: absolute;
-        right: auto;
-        margin-left: 108px;
-        /*margin-right: 5%;*/
+        display: inline-block;
+        left: 50%;
+        margin-left: 340px;
     }
     .form {
         overflow: hidden;
@@ -196,17 +207,14 @@ p {
     .form_data {
         flex: auto;
     }
-    .mainNaV { /*Большой бургер:*/
-        position: relative;
-        left: 50%;
-        margin-left: -200px;
-        margin-top: 1%;
-        width: 400px;
-        height: 300px;
-        font-size: 160px;
-    }
     #offcanvasNavbar {
-        width: 35%;
+        width: 20%;
+    }
+    #information_main {
+        height: 64px;
+    }
+    .main-info-top {
+        font-size: 20px;
     }
     #information_briefly .container {
         width: 700px;

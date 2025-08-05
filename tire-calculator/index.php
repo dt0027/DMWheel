@@ -1,11 +1,11 @@
 <?php
-$titlePage = 'Шинный калькулятор';
+$titlePage = 'Шинный калькулятор и расчет дисков онлайн – Точный подбор размеров';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
 ?>
 
 <section id="data1" class="data_main">
     <div class="container container_form">
-
+        <h1 class="h1-tire-calculator">Шинный калькулятор</h1>
         <div class="form">
             <div class="form_data" data-id="1" data-color="#5c636a">
                 <p class="p_name">Диск</p>
@@ -84,15 +84,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
             <canvas id="myCanvas1" width="800px" height="800px"></canvas>
             <canvas id="myCanvas2" width="800px" height="800px"></canvas>
         </div>
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col">
                 <a href="../img">
-                    <img src="../img/inner_file/page_file.svg" class="page_file1" alt="page_file">
+                    <img src="../img/inner_file/page_file.svg" id="page_file1" alt="page_file">
                 </a>
             </div>
             <div class="col">
                 <a href="../img">
-                    <img src="../img/inner_file/page_file.svg" class="page_file2" alt="page_file">
+                    <img src="../img/inner_file/page_file.svg" id="page_file2" alt="page_file">
                 </a>
             </div>
         </div>
@@ -100,14 +102,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
 </section>
 
 <section id="information_main">
-    <p id="main-info" class="text-center"></p>
-    <p id="main-info-2" class="text-center"></p>
+    <p id="main-info" class="text-center main-info-top"></p>
+    <p id="main-info-2" class="text-center main-info-top"></p>
 </section>
 
 <section id="information_briefly">
     <div class="container">
         <div class="row wheel-all-setting">
-            <div class="col"></div>
             <div class="col text-center">
                 <div class="wheel-all-setting-left">
                     <p>Текущие</p>
@@ -120,7 +121,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/include/header.php';
                     <p id="main-setting2"></p>
                 </div>
             </div>
-            <div class="col text-center"></div>
         </div>
     </div>
 

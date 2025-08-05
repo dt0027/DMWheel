@@ -160,6 +160,8 @@ function myPaint(number = 1, color = '#5c636a') {
     if ((!isNaN(diamTire[1]) && diamTire[1] !== null) || (!isNaN(diamTire[2])  && diamTire[2] !== null)) {
         document.getElementById('tire-change' + number).innerHTML = allDiam.toFixed(1) + ' мм';
     }
+
+
     // Разница диаметров шин
     if (!isNaN(diamTire[1]) && !isNaN(diamTire[2]) && diamTire[1] !== null && diamTire[2] !== null) {
         let deltaWheel = diamTire[2] - diamTire[1];
