@@ -6,10 +6,6 @@ let isDragging = false;
 let startX = 0;
 let offsetX2 = 0;
 
-// Переменные для рассчета координат первого и второго диска:
-let xPositionOut = {1: null, 2: null} // Относительно арки
-let xPositionInner = {1: null, 2: null} // Относительно стойки
-
 // Переменные для разницы значений
 let diameterWheel = {1: null, 2: null}
 let widthWheel = {1: null, 2: null} // Ширина диска
@@ -18,12 +14,12 @@ let etAll = {1: null, 2: null} // Вылет
 
 // Расчет et2
 function calculateET2() {
-    let out1 = parseFloat(document.getElementById('out1').value || 0) * 25.4;
-    let inner1 = parseFloat(document.getElementById('inner1').value || 0) * 25.4;
-    let et1 = parseFloat(document.getElementById('et1').value || 0);
+    let out1 = parseFloat(document.getElementById('out1').value || '0') * 25.4;
+    let inner1 = parseFloat(document.getElementById('inner1').value || '0') * 25.4;
+    let et1 = parseFloat(document.getElementById('et1').value || '0');
 
-    let out2 = parseFloat(document.getElementById('out2').value || 0) * 25.4;
-    let inner2 = parseFloat(document.getElementById('inner2').value || 0) * 25.4;
+    let out2 = parseFloat(document.getElementById('out2').value || '0') * 25.4;
+    let inner2 = parseFloat(document.getElementById('inner2').value || '0') * 25.4;
 
     if (!out1 || !inner1 || isNaN(et1) || !out2 || !inner2) return;
 
@@ -46,10 +42,9 @@ function myPaint2(number = 1, color = '#5c636a') {
         'linear-gradient(to right, transparent, ' + color + ', transparent)';
 
     let canvas = document.getElementById('myCanvas' + number);
-    // if (!canvas) return;
     let ctx = canvas.getContext('2d');
 
-    // Получаем значения из input'ов
+    // Получаем значения из input
     let outValue = document.getElementById('out' + number).value;
     let innerValue = document.getElementById('inner' + number).value;
     let diameterValue = document.getElementById('diam' + number).value;
@@ -71,14 +66,13 @@ function myPaint2(number = 1, color = '#5c636a') {
 
     // Вычисляем смещение по вылету и добавляем перетаскивание
     let offSet = baseOffset + (number === 2 ? offsetX2 : 0);
-
     // xWheelLeft для первого — центр, для второго — относительно первого
     let xWheelLeft = (canvas.width / 2) - ((out + inner) / 2) + offSet;
-
     if (number === 2) {
         let xWheelLeft1 = (canvas.width / 2) - (widthWheel[1] / 2) + etAll[1];
         let xDiff = xWheelLeft - xWheelLeft1;
         xWheelLeft = xWheelLeft1 + xDiff;
+        etAll[2] += offsetX2;
     }
     // Координаты
     let xWheelRight = xWheelLeft + out + inner;
@@ -240,6 +234,13 @@ function myPaint2(number = 1, color = '#5c636a') {
     }
     if(!isNaN(diameterWheel[2]) && diameterWheel[2] !== null) {
         document.getElementById('main-info-2').innerHTML = 'Текущие параметры: ' + diameterWheel[2] + 'x' + widthWheel[2] + ' ET' + etAll[2];
+    }
+
+    // Прозрачность первого диска, при появлении второго:
+    if (number === 1 && diameterWheel[2]) {
+        ctx.globalAlpha = 0.5;
+    } else {
+        ctx.globalAlpha = 1.0;
     }
 }
 
