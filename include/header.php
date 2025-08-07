@@ -49,7 +49,7 @@
                                 <a class="nav-link active" aria-current="page" href="/tire-calculator/">Шинный калькулятор</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Калькулятор составных дисков</a>
+                                <a class="nav-link" href="/3pc-offset/">Калькулятор составных дисков</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/page-gallery/">Галерея</a>

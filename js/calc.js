@@ -1,24 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.form');
-
-    const blocks = container.querySelectorAll('.form_data');
-
-    blocks.forEach(block => {
-        block.addEventListener('click', () => {
-            const blockRect = block.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-
-            const scrollLeft = container.scrollLeft;
-            const offset = blockRect.left - containerRect.left;
-            const centerOffset = offset - (containerRect.width / 2) + (blockRect.width / 2);
-
-            container.scrollTo({
-                left: scrollLeft + centerOffset, behavior: 'smooth'
-            });
-        });
-    });
-});
-
 // Переменные для перетаскивания верхнего диска:
 let isDragging = false;
 let startX = 0;
@@ -193,14 +172,6 @@ function myPaint(number = 1, color = '#5c636a') {
         let deltaWheel = widthWheel[2] - widthWheel[1];
         document.getElementById('wheel-width-difference').innerHTML = '(разница ' + deltaWheel.toFixed(1) + ' мм)';
     }
-
-
-
-    console.log('логи:')
-    console.log('diamTire[1]' + diamTire[1])
-    console.log('diamTire[2]' + diamTire[2])
-
-    // Ширина диска: ТОЖЕ НУЖНА РАЗНИЦА:
 }
 
 

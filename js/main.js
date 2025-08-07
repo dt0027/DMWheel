@@ -20,3 +20,22 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.form');
+    const blocks = container.querySelectorAll('.form_data');
+    blocks.forEach(block => {
+        block.addEventListener('click', () => {
+            const blockRect = block.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+
+            const scrollLeft = container.scrollLeft;
+            const offset = blockRect.left - containerRect.left;
+            const centerOffset = offset - (containerRect.width / 2) + (blockRect.width / 2);
+
+            container.scrollTo({
+                left: scrollLeft + centerOffset, behavior: 'smooth'
+            });
+        });
+    });
+});
